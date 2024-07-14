@@ -13,7 +13,7 @@ const slashCommands = [];
 client.on("guildCreate", async (guild) => {
     console.log(`${client.user.tag} sunucuya eklendi: ${guild.name} (${guild.id})`);
 
-    const rest = new REST({ version: '9' }).setToken(config.token);
+    const rest = new REST({ version: '9' }).setToken(process.env.token);
 
     try {
         await rest.put(Routes.applicationGuildCommands(config.clientID, guild.id), { body: slashCommands });
@@ -199,4 +199,4 @@ client.on(Events.MessageDelete, (message) => {
 	}
 })
 
-client.login(config.token);
+client.login(process.env.token);
